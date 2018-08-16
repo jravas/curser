@@ -3,23 +3,18 @@ import { Text, StyleSheet } from "react-native";
 import { Font } from "expo";
 
 export class Curse extends Component {
-  state = { curse: null, fontsLoaded: false };
+  state = { fontsLoaded: false };
 
   async componentDidMount() {
-    this.getCurse();
+    // this.getCurse();
     await Font.loadAsync({
       hipster: require("../assets/fonts/hipster.otf")
     });
     this.setState({ fontsLoaded: true });
   }
-  getCurse = () => {
-    const url = "https://insult.mattbas.org/api/insult.json";
-    fetch(url)
-      .then(response => response.json())
-      .then(data => this.setState({ curse: data.insult }));
-  };
   render() {
-    const { curse, fontsLoaded } = this.state;
+    const { fontsLoaded } = this.state;
+    const { curse } = this.props;
     return fontsLoaded && <Text style={styles.text}>{curse}</Text>;
   }
 }
