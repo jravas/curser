@@ -6,7 +6,6 @@ export class Curse extends Component {
   state = { fontsLoaded: false };
 
   async componentDidMount() {
-    // this.getCurse();
     await Font.loadAsync({
       hipster: require("../assets/fonts/hipster.otf")
     });
